@@ -1,11 +1,13 @@
 package br.com.ws.bytebankalura.dtos;
 
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-public class ClientDto {
+@Getter
+@AllArgsConstructor
+public class OperationsClientDto {
 
     private String name;
     private String document;
     private String password;
-    private List<String> telephones;
 }

@@ -5,10 +5,8 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class DepositDto {
+public class CreateAccountDto {
 
-    private OperationsClientDto client;
-    private AccountDto account;
-    private Integer value;
-
+    private AccountDto accountDto;
+    private ClientDto clientDto;
 }

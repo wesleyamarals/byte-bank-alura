@@ -20,6 +20,6 @@ public class Client {
 
     @Getter
     @Setter
-    private List<String> telephone;
+    private List<String> telephones;
 
 }
