@@ -1,18 +1,57 @@
 package br.com.ws.bytebankalura.service;
 
-import br.com.ws.bytebankalura.dtos.WithdrawDto;
+import br.com.ws.bytebankalura.dtos.OperationsDepositDto;
+import br.com.ws.bytebankalura.entity.AccountEntity;
+import br.com.ws.bytebankalura.entity.ClientEntity;
+import br.com.ws.bytebankalura.model.Account;
+import br.com.ws.bytebankalura.repository.AccountRepository;
+import br.com.ws.bytebankalura.repository.ClientRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.Objects;
 
 @Service
 public class ByteBankOperationsService {
 
-    public String withdraw(WithdrawDto withdrawDto) {
+    ClientRepository clientRepository;
+    AccountRepository accountRepository;
+
+    public ByteBankOperationsService(ClientRepository clientRepository, AccountRepository accountRepository) {
+        this.clientRepository = clientRepository;
+        this.accountRepository = accountRepository;
+    }
+
+    public String withdraw(OperationsDepositDto withdrawDto) {
         //TODO
         return "";
     }
 
-    public String deposit(WithdrawDto withdrawDto) {
-        //TODO
-        return "";
+    public String deposit(OperationsDepositDto operationsDepositDto) {
+
+        ClientEntity clientEntity = clientRepository.findByDocument(operationsDepositDto.getClient().getDocument());
+
+        if (Objects.isNull(clientEntity)) {
+            return "O Cliente para o qual deseja realizar o depósito não existe";
+        }
+
+        AccountEntity accountEntity = accountRepository.findByClientId(clientEntity.getId());
+        Account account = accountEntity.toAccount();
+
+        if (!Objects.equals(account.getNumber(), operationsDepositDto.getAccount().getNumber())
+                || !Objects.equals(account.getAgency(), operationsDepositDto.getAccount().getAgency())) {
+
+            return "A conta ou agência para a qual deseja realizar o depósito não existe";
+        }
+
+        account.deposit(operationsDepositDto.getValue());
+        accountEntity.setBalance(account.getBalance());
+
+        accountRepository.save(accountEntity);
+        return "Seu depósito foi realizado com sucesso: \n" +
+                clientEntity.getName().toUpperCase() + "\n" +
+                "CPF: " + clientEntity.getDocument() + "\n" +
+                "Agência: " + account.getAgency() + "\n" +
+                "Conta: " + account.getNumber() + "\n" +
+                "Valor: R$" + operationsDepositDto.getValue() + ",00";
     }
 }

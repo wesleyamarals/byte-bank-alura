@@ -9,5 +9,4 @@ public class OperationsClientDto {
 
     private String name;
     private String document;
-    private String password;
 }

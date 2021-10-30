@@ -1,6 +1,6 @@
 package br.com.ws.bytebankalura.controller;
 
-import br.com.ws.bytebankalura.dtos.WithdrawDto;
+import br.com.ws.bytebankalura.dtos.OperationsDepositDto;
 import br.com.ws.bytebankalura.service.ByteBankOperationsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(path = "byteBankAluraOperations")
@@ -22,7 +24,7 @@ public class ByteBankAluraOperationsController {
     }
 
     @PostMapping(path = "withdraw")
-    public ResponseEntity<String> withdrway(@RequestBody WithdrawDto withdrawDto) {
+    public ResponseEntity<String> withdrway(@RequestBody OperationsDepositDto withdrawDto) {
         try {
             return ResponseEntity.ok(byteBankOperationsService.withdraw(withdrawDto));
         } catch (Exception e) {
@@ -32,7 +34,7 @@ public class ByteBankAluraOperationsController {
     }
 
     @PostMapping(path = "deposit")
-    public ResponseEntity<String> deposit(@RequestBody WithdrawDto withdrawDto) {
+    public ResponseEntity<String> deposit(@RequestBody @Valid OperationsDepositDto withdrawDto) {
         try {
             return ResponseEntity.ok(byteBankOperationsService.deposit(withdrawDto));
         } catch (Exception e) {

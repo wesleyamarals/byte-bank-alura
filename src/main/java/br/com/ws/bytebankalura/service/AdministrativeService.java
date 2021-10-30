@@ -28,7 +28,7 @@ public class AdministrativeService {
                 createAccountDto.getClient().getDocument(), createAccountDto.getClient().getPassword(),
                 createAccountDto.getClient().getTelephones());
         Account account = new Account(createAccountDto.getAccount().getNumber(),
-                createAccountDto.getAccount().getAgency(), client);
+                createAccountDto.getAccount().getAgency());
 
         ClientEntity clientEntity = clientRepository.save(client.toEntity());
         AccountEntity accountEntity = accountRepository.save(account.toEntity(clientEntity.getId()));

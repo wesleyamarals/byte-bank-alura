@@ -1,5 +1,6 @@
 package br.com.ws.bytebankalura.entity;
 
+import br.com.ws.bytebankalura.model.Account;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,9 +26,13 @@ public class AccountEntity {
     private Integer agency;
 
     @Column(name = "Balance", nullable = false)
-    private Long balance;
+    private Integer balance;
 
     @Column(name = "ClientId", nullable = false)
     private Long clientId;
+
+    public Account toAccount() {
+        return Account.builder().number(this.number).agency(this.agency).balance(this.balance).build();
+    }
 
 }
