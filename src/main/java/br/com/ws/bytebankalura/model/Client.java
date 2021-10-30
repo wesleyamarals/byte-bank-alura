@@ -1,5 +1,6 @@
 package br.com.ws.bytebankalura.model;
 
+import br.com.ws.bytebankalura.entity.ClientEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,5 +22,10 @@ public class Client {
     @Getter
     @Setter
     private List<String> telephones;
+
+    public ClientEntity toEntity() {
+        return ClientEntity.builder().name(this.getName()).document(this.getDocument()).telephones(this.telephones.toString())
+                .password(this.password).build();
+    }
 
 }

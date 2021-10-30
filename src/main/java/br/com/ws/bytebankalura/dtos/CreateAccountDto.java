@@ -7,6 +7,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class CreateAccountDto {
 
-    private AccountDto accountDto;
-    private ClientDto clientDto;
+    private AccountDto account;
+    private ClientDto client;
 }
