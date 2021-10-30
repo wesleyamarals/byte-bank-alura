@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "byteBankAlura")
-public class ByteBankAluraController {
+@RequestMapping(path = "byteBankAluraOperations")
+public class ByteBankAluraOperationsController {
 
     private final ByteBankOperationsService byteBankOperationsService;
 
     @Autowired
-    public ByteBankAluraController(ByteBankOperationsService byteBankOperationsService) {
+    public ByteBankAluraOperationsController(ByteBankOperationsService byteBankOperationsService) {
         this.byteBankOperationsService = byteBankOperationsService;
     }
 
