@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(path = "byteBankAluraAdministrative")
 public class ByteBankAluraAdministrativeController {
@@ -22,7 +24,7 @@ public class ByteBankAluraAdministrativeController {
     }
 
     @PostMapping(path = "createAccount")
-    public ResponseEntity<String> createAccount(@RequestBody CreateAccountDto createAccountDto) {
+    public ResponseEntity<String> createAccount(@RequestBody @Valid CreateAccountDto createAccountDto) {
         try {
             return ResponseEntity.ok(administrativeService.createAccount(createAccountDto));
         } catch (Exception e) {

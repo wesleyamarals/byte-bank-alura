@@ -1,6 +1,7 @@
 package br.com.ws.bytebankalura.controller;
 
 import br.com.ws.bytebankalura.dtos.OperationsDepositDto;
+import br.com.ws.bytebankalura.dtos.OperationsWithdrawDto;
 import br.com.ws.bytebankalura.service.ByteBankOperationsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,7 +25,7 @@ public class ByteBankAluraOperationsController {
     }
 
     @PostMapping(path = "withdraw")
-    public ResponseEntity<String> withdrway(@RequestBody OperationsDepositDto withdrawDto) {
+    public ResponseEntity<String> withdrway(@RequestBody OperationsWithdrawDto withdrawDto) {
         try {
             return ResponseEntity.ok(byteBankOperationsService.withdraw(withdrawDto));
         } catch (Exception e) {
