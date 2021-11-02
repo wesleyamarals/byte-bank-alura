@@ -1,6 +1,7 @@
 package br.com.ws.bytebankalura.controller;
 
 import br.com.ws.bytebankalura.dtos.OperationsDepositDto;
+import br.com.ws.bytebankalura.dtos.OperationsTransferDto;
 import br.com.ws.bytebankalura.dtos.OperationsWithdrawDto;
 import br.com.ws.bytebankalura.service.ByteBankOperationsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +36,23 @@ public class ByteBankAluraOperationsController {
     }
 
     @PostMapping(path = "deposit")
-    public ResponseEntity<String> deposit(@RequestBody @Valid OperationsDepositDto withdrawDto) {
+    public ResponseEntity<String> deposit(@RequestBody @Valid OperationsDepositDto depositDto) {
         try {
-            return ResponseEntity.ok(byteBankOperationsService.deposit(withdrawDto));
+            return ResponseEntity.ok(byteBankOperationsService.deposit(depositDto));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Não foi possível processar o seu depósito");
 
         }
+    }
 
+    @PostMapping(path = "transfer")
+    public ResponseEntity<String> transfer(@RequestBody @Valid OperationsTransferDto transferDto) {
+        try {
+            return ResponseEntity.ok(byteBankOperationsService.transfer(transferDto));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Não foi possível processar a sua " +
+                    "transferência");
+
+        }
     }
 }

@@ -35,6 +35,14 @@ public class Account {
         return this.getBalance();
     }
 
+    public Boolean transfer(Account destinationAccount, Integer value) {
+        if (this.withdraw(value)) {
+            destinationAccount.deposit(value);
+            return true;
+        }
+        return false;
+    }
+
     public AccountEntity toEntity(Long clientId) {
         return AccountEntity.builder().number(this.number).agency(this.agency)
                 .balance(this.balance).clientId(clientId).build();
