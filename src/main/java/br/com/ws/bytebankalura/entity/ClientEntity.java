@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "Client")
+@Entity(name = "client")
 public class ClientEntity {
 
     @Id
@@ -17,15 +17,15 @@ public class ClientEntity {
     @Column(name = "Id", nullable = false)
     private Long id = 1L;
 
-    @Column(name = "Name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "Document", nullable = false)
+    @Column(name = "document", nullable = false)
     private String document;
 
-    @Column(name = "Telephones", nullable = false)
+    @Column(name = "telephones", nullable = false)
     private String telephones;
 
-    @Column(name = "Password", nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 }

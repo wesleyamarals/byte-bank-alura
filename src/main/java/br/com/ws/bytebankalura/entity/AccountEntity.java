@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "Account")
+@Entity(name = "account")
 public class AccountEntity {
 
     @Id
@@ -19,16 +19,16 @@ public class AccountEntity {
     @Column(name = "Id", nullable = false)
     private Long id = 1L;
 
-    @Column(name = "Number", nullable = false)
+    @Column(name = "number", nullable = false)
     private Integer number;
 
-    @Column(name = "Agency", nullable = false)
+    @Column(name = "agency", nullable = false)
     private Integer agency;
 
-    @Column(name = "Balance", nullable = false)
+    @Column(name = "balance", nullable = false)
     private Integer balance;
 
-    @Column(name = "ClientId", nullable = false)
+    @Column(name = "clientId", nullable = false)
     private Long clientId;
 
     public Account toAccount() {

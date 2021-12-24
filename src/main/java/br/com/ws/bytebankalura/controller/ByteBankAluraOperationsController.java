@@ -26,7 +26,7 @@ public class ByteBankAluraOperationsController {
     }
 
     @PostMapping(path = "withdraw")
-    public ResponseEntity<String> withdrway(@RequestBody OperationsWithdrawDto withdrawDto) {
+    public ResponseEntity<String> withdraw(@RequestBody OperationsWithdrawDto withdrawDto) {
         try {
             return ResponseEntity.ok(byteBankOperationsService.withdraw(withdrawDto));
         } catch (Exception e) {

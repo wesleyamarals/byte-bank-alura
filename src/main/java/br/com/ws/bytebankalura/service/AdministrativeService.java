@@ -1,7 +1,6 @@
 package br.com.ws.bytebankalura.service;
 
 import br.com.ws.bytebankalura.dtos.CreateAccountDto;
-import br.com.ws.bytebankalura.entity.AccountEntity;
 import br.com.ws.bytebankalura.entity.ClientEntity;
 import br.com.ws.bytebankalura.model.Account;
 import br.com.ws.bytebankalura.model.Client;
@@ -22,7 +21,7 @@ public class AdministrativeService {
         this.clientRepository = clientRepository;
     }
 
-    public String createAccount(CreateAccountDto createAccountDto) {
+    public Boolean createAccount(CreateAccountDto createAccountDto) {
 
         Client client = new Client(createAccountDto.getClient().getName(),
                 createAccountDto.getClient().getDocument(), createAccountDto.getClient().getPassword(),
@@ -31,11 +30,9 @@ public class AdministrativeService {
                 createAccountDto.getAccount().getAgency());
 
         ClientEntity clientEntity = clientRepository.save(client.toEntity());
-        AccountEntity accountEntity = accountRepository.save(account.toEntity(clientEntity.getId()));
+        accountRepository.save(account.toEntity(clientEntity.getId()));
 
-        return "Conta criada com sucesso, dados da conta: \n" +
-                "Numero: " + accountEntity.getNumber() + "\n" +
-                "Agência " + accountEntity.getAgency();
+        return true;
 
     }
 }
